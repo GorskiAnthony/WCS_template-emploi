@@ -12,12 +12,11 @@ const { CLIENT_ID, CLIENT_SECRET, SCOPE, GRANT_TYPE, REALM } = process.env;
 const API = `https://entreprise.pole-emploi.fr/connexion/oauth2/access_token?realm=${REALM}&grant_type=${GRANT_TYPE}&Content-Type=application/x-www-form-urlencoded&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&scope=${SCOPE}`;
 
 app.get("/api/token", async (req, res) => {
-  console.log("request received");
   const response = await fetch(API, {
     method: "post",
   });
   const json = await response.json();
-  res.send(json.access_token);
+  res.send(json);
 });
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
